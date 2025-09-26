@@ -5,7 +5,7 @@ session_start();
 // Security check: ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     // If not logged in, redirect to login page
-    header("Location: ../auth.html");
+    header("Location: ../index.php");
     exit();
 }
 

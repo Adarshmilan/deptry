@@ -4,7 +4,7 @@ session_start();
 
 // Security check: ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../auth.html");
+    header("Location: ../index.php");
     exit();
 }
 

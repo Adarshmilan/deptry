@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     }
-    header("Location: ../auth.html?error=invalid_credentials");
+    header("Location: ../index.php?error=invalid_credentials");
     exit();
 }
 ?>

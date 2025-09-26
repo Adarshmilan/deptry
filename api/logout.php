@@ -2,6 +2,6 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header("Location: ../auth.html");
+header("Location: ../index.php");
 exit();
 ?>

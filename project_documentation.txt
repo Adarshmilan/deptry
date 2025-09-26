@@ -15,7 +15,7 @@ UniSync is a web-based application designed to facilitate a campus-centric deliv
 
 ### 3.1. Authentication
 -   Users can sign up for a new account or log in using their email and password.
--   The `auth.html` page provides a tabbed interface for both login and signup.
+-   The `index.php` page provides a tabbed interface for both login and signup.
 -   Backend handlers (`api/signup_handler.php`, `api/login_handler.php`) process the form submissions, interact with the database, and manage user sessions using PHP `$_SESSION`.
 -   `api/logout.php` destroys the session to log the user out.
 
@@ -65,7 +65,7 @@ C:\XAMPP\HTDOCS\UNISYNC
 │   └── unisync.sql
 ├── js
 │   └── chat_logic.js
-├── auth.html
+├── index.php
 ├── chat.php
 ├── create_request.html
 ├── dashboard.php

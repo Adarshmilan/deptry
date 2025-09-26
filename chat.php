@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || !isset($_GET['request_id'])) {
-    header("Location: auth.html");
+    header("Location: index.php");
     exit();
 }
 require_once 'api/db_connect.php';
