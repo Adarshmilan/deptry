@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Request - UniDeli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-blue-600">UniDeli</h1>
+        <a
+          href="dashboard.php"
+          class="text-blue-600 hover:text-blue-800 font-semibold"
+          >Back to Dashboard</a
+        >
+      </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+      <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+          Post a New Delivery Request
+        </h2>
+
+        <form
+          action="api/create_request_handler.php"
+          method="POST"
+          class="space-y-6"
+        >
+          <div>
+            <label
+              for="item_description"
+              class="block text-sm font-medium text-gray-700"
+              >What do you need?</label
+            >
+            <textarea
+              id="item_description"
+              name="item_description"
+              rows="3"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="e.g., 1 packet of Lays Magic Masala, 1 bottle of Coke"
+            ></textarea>
+          </div>
+          <div>
+            <label
+              for="pickup_location"
+              class="block text-sm font-medium text-gray-700"
+              >Where to get it from?</label
+            >
+            <input
+              type="text"
+              id="pickup_location"
+              name="pickup_location"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="e.g., Reliance Smart, Crystal Mall"
+            />
+          </div>
+          <div>
+            <label
+              for="delivery_fee"
+              class="block text-sm font-medium text-gray-700"
+              >What's the delivery fee you're offering? (in ₹)</label
+            >
+            <input
+              type="number"
+              id="delivery_fee"
+              name="delivery_fee"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="e.g., 30"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+          >
+            Post Request
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

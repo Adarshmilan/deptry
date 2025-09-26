@@ -1,0 +1,75 @@
+# UniSync Project Documentation
+
+## 1. Project Overview
+
+UniSync is a web-based application designed to facilitate a campus-centric delivery system. It allows students to post requests for items they need, and other students can accept these requests to earn a delivery fee. The system includes user authentication, a dashboard for available requests, a system for creating and managing personal requests and deliveries, and a real-time chat feature for coordination.
+
+## 2. Technical Stack
+
+*   **Frontend:** HTML, Tailwind CSS (via CDN), JavaScript
+*   **Backend:** PHP
+*   **Database:** MySQL
+*   **Web Server:** XAMPP (Apache)
+
+## 3. How It Works
+
+### 3.1. Authentication
+-   Users can sign up for a new account or log in using their email and password.
+-   The `auth.html` page provides a tabbed interface for both login and signup.
+-   Backend handlers (`api/signup_handler.php`, `api/login_handler.php`) process the form submissions, interact with the database, and manage user sessions using PHP `$_SESSION`.
+-   `api/logout.php` destroys the session to log the user out.
+
+### 3.2. Core Application Flow
+1.  **Dashboard (`dashboard.php`):** After logging in, the user is directed to the dashboard. This page displays a list of all "pending" delivery requests posted by other users. From here, a user can accept a request.
+2.  **Creating a Request (`create_request.html`):** Users can create their own delivery requests by filling out a form specifying the item, pickup location, and the fee they are offering. This is handled by `api/create_request_handler.php`.
+3.  **Accepting a Request:** On the dashboard, a user can accept a request. This action is handled by `api/accept_request_handler.php`, which updates the request's status to "accepted" and assigns the current user as the `deliverer_id`.
+4.  **Managing Tasks (`my_deliveries.php`):** This page is a personal hub for the user. It shows two main sections:
+    *   **Tasks I've Accepted:** A list of requests the user has agreed to deliver.
+    *   **My Posted Requests:** A list of requests the user has created.
+5.  **Completing a Request:** Once a delivery is made, the original requester can mark the task as "completed" from their "My Posted Requests" section. This is handled by `api/complete_request_handler.php`.
+
+### 3.3. Real-time Chat (`chat.php` & `js/chat_logic.js`)
+-   When a request is "ac   cepted", a chat channel is effectively opened between the requester and the deliverer.
+-   Users can access the chat from the `my_deliveries.php` page.
+-   `chat.php` is the main chat interface.
+-   `js/chat_logic.js` handles the client-side logic:
+    *   It periodically fetches new messages from `api/fetch_messages.php`.
+    *   It sends new messages to `api/send_message_handler.php`.
+    *   It dynamically updates the chat window without needing a page reload.
+
+### 3.4. Feedback System (`feedback.php`)
+-   Users can submit suggestions or complaints.
+-   `api/suggestion_handler.php` and `api/complaint_handler.php` process these forms and would typically store the feedback in the database (though the current implementation might be basic).
+
+### 3.5. Database (`database/unisync.sql`)
+-   The `unisync.sql` file contains the necessary SQL statements to create the database schema, including tables for `users`, `requests`, `messages`, `suggestions`, and `complaints`.
+-   `api/db_connect.php` contains the database connection credentials and logic, used by all other backend handlers to interact with the MySQL database.
+
+## 4. Directory Tree
+
+```
+C:\XAMPP\HTDOCS\UNISYNC
+├── api
+│   ├── accept_request_handler.php
+│   ├── complaint_handler.php
+│   ├── complete_request_handler.php
+│   ├── create_request_handler.php
+│   ├── db_connect.php
+│   ├── fetch_messages.php
+│   ├── login_handler.php
+│   ├── logout.php
+│   ├── send_message_handler.php
+│   ├── signup_handler.php
+│   └── suggestion_handler.php
+├── database
+│   └── unisync.sql
+├── js
+│   └── chat_logic.js
+├── auth.html
+├── chat.php
+├── create_request.html
+├── dashboard.php
+├── feedback.php
+├── my_deliveries.php
+└── signup.html
+```
